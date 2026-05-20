@@ -1,0 +1,456 @@
+{
+  "info": {
+    "_postman_id": "d3d78855-ed57-4382-b827-1cd8654d6bcb",
+    "name": "INTESI_GROUP_TEST",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "10149990"
+  },
+  "item": [
+    {
+      "name": "GET_JWT_TOKEN",
+      "request": {
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "clientSecret",
+              "value": "8PDH3fflpbzJyx2rAy39SPB60OuSjeX6",
+              "type": "string"
+            },
+            {
+              "key": "clientId",
+              "value": "demo-task",
+              "type": "string"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://idpgw.test4mind.com/realms/demo-interview/protocol/openid-connect/token",
+              "type": "string"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://idpgw.test4mind.com/realms/demo-interview/protocol/openid-connect/auth",
+              "type": "string"
+            },
+            {
+              "key": "useBrowser",
+              "value": false,
+              "type": "boolean"
+            },
+            {
+              "key": "redirect_uri",
+              "value": "https://oauth.pstmn.io/v1/callback",
+              "type": "string"
+            },
+            {
+              "key": "tokenName",
+              "value": "my_token",
+              "type": "string"
+            },
+            {
+              "key": "addTokenTo",
+              "value": "header",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://idpgw.test4mind.com/realms/demo-interview/protocol/openid-connect/auth",
+          "protocol": "https",
+          "host": [
+            "idpgw",
+            "test4mind",
+            "com"
+          ],
+          "path": [
+            "realms",
+            "demo-interview",
+            "protocol",
+            "openid-connect",
+            "auth"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET_ALL_USERS",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_path}}/users/all",
+          "host": [
+            "{{base_path}}"
+          ],
+          "path": [
+            "users",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET_LOGS_BY_USER",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_path}}/logs/user/creator_user",
+          "host": [
+            "{{base_path}}"
+          ],
+          "path": [
+            "logs",
+            "user",
+            "creator_user"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET_ALL_LOGS",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_path}}/logs/all",
+          "host": [
+            "{{base_path}}"
+          ],
+          "path": [
+            "logs",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET_USER_BY_ID",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_path}}/users/1",
+          "host": [
+            "{{base_path}}"
+          ],
+          "path": [
+            "users",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET_USER_BY_EMAIL",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_path}}/users/email/cap.america2@example.com",
+          "host": [
+            "{{base_path}}"
+          ],
+          "path": [
+            "users",
+            "email",
+            "cap.america2@example.com"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET_USERS_BY_ROLES",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_path}}/users/role/MANTAINER",
+          "host": [
+            "{{base_path}}"
+          ],
+          "path": [
+            "users",
+            "role",
+            "MANTAINER"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UPDATE_USER",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"mario.rossi\",\r\n  \"email\": \"mario.rossi@example.com\",\r\n  \"taxCode\": \"RSSMRA80A01H501Z\",\r\n  \"name\": \"Mario\",\r\n  \"surname\": \"Rossi\",\r\n  \"roles\": [\"DEVELOPER\", \"MAINTAINER\", \"REPORTER\"]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_path}}/users/1",
+          "host": [
+            "{{base_path}}"
+          ],
+          "path": [
+            "users",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ADD_ROLE",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"mario.rossi\",\r\n  \"email\": \"mario.rossi@example.com\",\r\n  \"taxCode\": \"RSSMRA80A01H501Z\",\r\n  \"name\": \"Mario\",\r\n  \"surname\": \"Rossi\",\r\n  \"roles\": [\"DEVELOPER\", \"MAINTAINER\", \"REPORTER\"]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_path}}/users/1/roles/OPERATOR",
+          "host": [
+            "{{base_path}}"
+          ],
+          "path": [
+            "users",
+            "1",
+            "roles",
+            "OPERATOR"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE_ROLE",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"mario.rossi\",\r\n  \"email\": \"mario.rossi@example.com\",\r\n  \"taxCode\": \"RSSMRA80A01H501Z\",\r\n  \"name\": \"Mario\",\r\n  \"surname\": \"Rossi\",\r\n  \"roles\": [\"DEVELOPER\", \"MAINTAINER\", \"REPORTER\"]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_path}}/users/1/roles/OWNER",
+          "host": [
+            "{{base_path}}"
+          ],
+          "path": [
+            "users",
+            "1",
+            "roles",
+            "OWNER"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CREATE_USER",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"l.f\",\r\n  \"email\": \"l.f@example.com\",\r\n  \"taxCode\": \"FLPLCU81L05L219I\",\r\n  \"name\": \"l\",\r\n  \"surname\": \"f\",\r\n  \"roles\": [\"REPORTER\", \"OWNER\"]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_path}}/users",
+          "host": [
+            "{{base_path}}"
+          ],
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE_USER",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"mario.rossi\",\r\n  \"email\": \"mario.rossi@example.com\",\r\n  \"taxCode\": \"RSSMRA80A01H501Z\",\r\n  \"name\": \"Mario\",\r\n  \"surname\": \"Rossi\",\r\n  \"roles\": [\"DEVELOPER\", \"MAINTAINER\"]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_path}}/users/1",
+          "host": [
+            "{{base_path}}"
+          ],
+          "path": [
+            "users",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
