@@ -1,6 +1,10 @@
 # INTESI_POC
 Users Management App used to perform CRUD operations on project users
 
+# System requirements
+1. JDK 17
+2. Docker Desktop (on Windows)
+
 # Framework/Technologies used
 Spring Boot Framework
 	Spring Security
