@@ -8,11 +8,12 @@ Spring Boot Framework
 RabbitMQ
 Lombok
 JUnit,Mockito
+Swagger
 Mapstruct
 Databases: PostgreSQL,H2
 maven
 Docker (for running PostgreSQL instance and rabbit message broker instance)
-POSTMAN 
+POSTMAN (used to test API and retrieve Keycloak token)
 
 # How to run application
 
@@ -24,7 +25,7 @@ docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 3. Execute POSTGRESQL container (only if application is started with "ps" pmaven profile): 
 docker run -d --name postgres-userservice -e POSTGRES_DB=mydb -e POSTGRES_USER=adminps -e POSTGRES_PASSWORD=adminps -p 5433:5433 -v postgres-data:/var/lib/postgresql/data postgres:16
 
-4. Start SpringBoot app
+4. Start SpringBoot app (from command line)
 From <MY_CLON_PATH>/user-service
 .\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=h2" --> db H2
 .\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=ps" --> DB Postgresql
