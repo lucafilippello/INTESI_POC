@@ -1,0 +1,8 @@
+package com.intesi.userservice.exception;
+
+@SuppressWarnings("serial")
+public class ResourceNotFoundException extends RuntimeException {
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+}
