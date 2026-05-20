@@ -27,7 +27,7 @@ POSTMAN (used to test API and retrieve Keycloak token)
 docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 
 3. Execute POSTGRESQL container (only if application is started with "ps" pmaven profile): 
-docker run -d --name postgres-userservice -e POSTGRES_DB=mydb -e POSTGRES_USER=adminps -e POSTGRES_PASSWORD=adminps -p 5433:5433 -v postgres-data:/var/lib/postgresql/data postgres:16
+docker run -d --name postgres-userservice -e POSTGRES_DB=mydb -e POSTGRES_USER=adminps -e POSTGRES_PASSWORD=adminps -p 5432:5432 -v postgres-data:/var/lib/postgresql/data postgres:16
 
 4. Start SpringBoot app (from command line)
 From <MY_CLON_PATH>/user-service
