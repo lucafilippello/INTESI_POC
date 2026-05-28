@@ -1,5 +1,19 @@
 # Maven
-target/
+**/target/
+
+#Eclipse
+**/.classpath
+**/.factorypath
+**/.project
+**/.settings/
+
+#Claude
+.claude
+
+#Custom
+no_versioning
+workspaceIntesiProject
+
 
 # Compiled class file
 *.class

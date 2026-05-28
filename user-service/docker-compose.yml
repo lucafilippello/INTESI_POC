@@ -1,0 +1,86 @@
+services:
+
+  # ─── RabbitMQ ───────────────────────────────────────────────────────────────
+  # Sempre avviato indipendentemente dal profilo
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"    # AMQP
+      - "15672:15672"  # Management UI → http://localhost:15672  (guest/guest)
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── PostgreSQL ─────────────────────────────────────────────────────────────
+  # Avviato solo con il profilo Docker Compose "ps"
+  postgresql:
+    image: postgres:15-alpine
+    container_name: postgresql
+    profiles: ["ps"]
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: adminps
+      POSTGRES_PASSWORD: adminps
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U adminps -d mydb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── App (profilo Spring h2) ─────────────────────────────────────────────────
+  # Avviata solo con il profilo Docker Compose "h2"
+  user-service-h2:
+    build: .
+    container_name: user-service
+    profiles: ["h2"]
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: h2
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USERNAME: guest
+      RABBITMQ_PASSWORD: guest
+      KEYCLOAK_ISSUER_URI: https://idpgw.test4mind.com/realms/demo-interview
+      KEYCLOAK_CLIENT_ID: demo-task
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  # ─── App (profilo Spring ps) ─────────────────────────────────────────────────
+  # Avviata solo con il profilo Docker Compose "ps"
+  user-service-ps:
+    build: .
+    container_name: user-service
+    profiles: ["ps"]
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: ps
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USERNAME: guest
+      RABBITMQ_PASSWORD: guest
+      POSTGRESQL_HOST: postgresql
+      POSTGRESQL_USR: adminps
+      POSTGRESQL_PWD: adminps
+      KEYCLOAK_ISSUER_URI: https://idpgw.test4mind.com/realms/demo-interview
+      KEYCLOAK_CLIENT_ID: demo-task
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      postgresql:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

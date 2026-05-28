@@ -46,7 +46,7 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
 
     /**
      * Legge realm_access.roles e li mappa come ROLE_<NOME>.
-     * Esempio: "ADMIN" → "ROLE_ADMIN"
+     * Esempio: "ADMIN" --> "ROLE_ADMIN"
      */
     @SuppressWarnings("unchecked")
     private Set<GrantedAuthority> extractRealmRoles(Jwt jwt) {
@@ -62,7 +62,7 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
 
     /**
      * Legge resource_access.<client-id>.roles e li mappa senza prefisso.
-     * Esempio: "read_user" → "read_user"
+     * Esempio: "read_user" --> "read_user"
      */
     @SuppressWarnings("unchecked")
     private Set<GrantedAuthority> extractResourcePermissions(Jwt jwt) {
